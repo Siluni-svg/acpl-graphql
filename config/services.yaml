@@ -1,0 +1,13 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: "../src/"
+
+    App\GraphQL\:
+        resource: "../src/GraphQL/"
+        public: true

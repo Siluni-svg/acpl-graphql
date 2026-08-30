@@ -1,0 +1,25 @@
+overblog_graphql:
+    security:
+        handle_cors: true
+
+    errors_handler:
+        enabled: true
+        internal_error_message: "Internal error occurred"
+        rethrow_internal_exceptions: false
+        debug: false
+        log: true # false will disabled the default logging behavior
+        logger_service: logger # the service to use to log
+
+    definitions:
+        schema:
+            query: Query
+            mutation: null
+            types: [User]
+        mappings:
+            types:
+                - type: attribute
+                  dir: "%kernel.project_dir%/src/GraphQL"
+                  suffix: null
+                - type: attribute
+                  dir: "%kernel.project_dir%/src/Entity"
+                  suffix: null
