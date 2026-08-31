@@ -4,6 +4,7 @@ namespace App\GraphQL\Query;
 
 use App\GraphQL\Input\PaginationInput;
 use App\GraphQL\Input\UserFilter;
+use App\GraphQL\Type\UserConnection;
 use App\Repository\UserRepository;
 use Overblog\GraphQLBundle\Annotation as GQL;
 
@@ -14,8 +15,8 @@ class UsersProviders
         private readonly UserRepository $repository,
     ) {}
 
-    #[GQL\Query(type: "[User]", name: "users")]
-    public function getUsers(?UserFilter $filter = null, ?PaginationInput $pagination = null)
+    #[GQL\Query(type: "UserConnection!", name: "users")]
+    public function getUsers(?UserFilter $filter = null, ?PaginationInput $pagination = null): UserConnection
     {
         return $this->repository->findByFilterPagination($filter, $pagination);
     }

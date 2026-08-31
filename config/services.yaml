@@ -7,7 +7,11 @@ services:
 
     App\:
         resource: "../src/"
+        exclude:
+            - "../src/GraphQL/Type/"
 
     App\GraphQL\:
         resource: "../src/GraphQL/"
+        exclude:
+            - "../src/GraphQL/Type/"
         public: true

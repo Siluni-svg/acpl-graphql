@@ -7,9 +7,19 @@ use Overblog\GraphQLBundle\Annotation as GQL;
 #[GQL\Input(name: 'PaginationInput')]
 class PaginationInput
 {
-    #[GQL\InputField(type: 'Int', name: 'first', defaultValue: 20)]
-    public int $first = 20;
+    /** Number of items to take starting at (or after) `cursor`. Ignored if `last` is set. */
+    #[GQL\InputField(type: 'Int', name: 'first')]
+    public ?int $first = null;
 
-    #[GQL\InputField(type: 'String', name: 'after')]
-    public ?string $after = null;
+    /** Number of items to take ending right before `cursor`. Takes over `first` when set. */
+    #[GQL\InputField(type: 'Int', name: 'last')]
+    public ?int $last = null;
+
+    /**
+     * Position to paginate from — combine with `first` to move forward from it,
+     * or with `last` to move backward up to it. Use the `nextCursor`/`previousCursor`
+     * values from a previous response's `pageInfo` rather than computing it by hand.
+     */
+    #[GQL\InputField(type: 'String', name: 'cursor')]
+    public ?string $cursor = null;
 }
