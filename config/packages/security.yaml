@@ -12,13 +12,18 @@ security:
         dev:
             pattern: ^/(_profiler|_wdt|assets|build)/
             security: false
-        main:
-            lazy: true
-            provider: app_user_provider
+        oauth2_public:
+            pattern: ^/(token|authorize|device-code)$
+            security: false
+        health:
+            pattern: ^/health
+            security: false
+        api:
+            stateless: true
+            oauth2: true
 
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/, roles: IS_AUTHENTICATED }
 
 when@test:
     security:

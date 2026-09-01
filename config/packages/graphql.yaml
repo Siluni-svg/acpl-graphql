@@ -13,7 +13,7 @@ overblog_graphql:
     definitions:
         schema:
             query: Query
-            mutation: null
+            mutation: Mutation
             types: [User]
         mappings:
             types:
